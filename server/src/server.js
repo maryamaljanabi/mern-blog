@@ -1,18 +1,23 @@
 import express from "express";
+import mongoose from "mongoose";
 import indexRoutes from "./routes/indexRoutes";
 import cors from "cors";
 import logger from "morgan";
 import { createStream } from "rotating-file-stream";
 import path from "path";
 import bodyParser from "body-parser";
+import connectDB from "./db/dbConfig";
+require("dotenv").config();
 
 const app = express();
 
 function setupServer() {
+  connectDB();
   applyExpressMiddlewares();
   //   app.use("/api/settings", settingRoutes);
   //   app.use("/api/locations", locationRoutes);
   //   app.use("/api/auth", authRoutes);
+
   app.get("/", (req, res) => {
     res.json("hi from gam server");
   });
