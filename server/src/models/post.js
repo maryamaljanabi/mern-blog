@@ -6,15 +6,11 @@ const postSchema = Schema({
     type: String,
     required: true,
   },
-  description: {
+  content: {
     type: String,
     required: true,
   },
-  text: {
-    type: String,
-    required: true,
-  },
-  image: {
+  imagePath: {
     type: String,
     required: true,
   },

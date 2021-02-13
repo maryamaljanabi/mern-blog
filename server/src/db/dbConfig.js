@@ -2,12 +2,13 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    const uri = process.env.MONGO_URI || "mongodb://localhost/mern-blog-db";
+    const uri = process.env.MONGO_URI;
     await mongoose
       .connect(uri, {
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
+        dbName: "mern-blog-db",
       })
       .catch((error) => console.log(error));
     const connection = mongoose.connection;

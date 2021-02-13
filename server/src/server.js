@@ -1,11 +1,11 @@
 import express from "express";
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
 import mongoose from "mongoose";
 import indexRoutes from "./routes/indexRoutes";
 import cors from "cors";
 import path from "path";
 import bodyParser from "body-parser";
 import connectDB from "./db/dbConfig";
-require("dotenv").config();
 
 const app = express();
 
