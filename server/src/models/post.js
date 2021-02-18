@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const postSchema = Schema({
   title: {
     type: String,
-    required: true,
+    required: [true, "Please enter the post's title"],
   },
   content: {
     type: String,
-    required: true,
+    required: [true, "Please enter the post's content"],
   },
   imagePath: {
     type: String,

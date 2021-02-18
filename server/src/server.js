@@ -1,7 +1,7 @@
 import express from "express";
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 import mongoose from "mongoose";
-import indexRoutes from "./routes/indexRoutes";
+import postRoutes from "./routes/postRoutes";
 import cors from "cors";
 import path from "path";
 import bodyParser from "body-parser";
@@ -15,6 +15,7 @@ function setupServer() {
   app.get("/", (req, res) => {
     res.json("hi from server");
   });
+  app.use("/api/post", postRoutes);
   app.use(express.static(path.join(__dirname, "public")));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -24,6 +25,7 @@ function setupServer() {
 function middlewares() {
   app.use(cors());
   app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
 }
 
 function startServer(port) {
