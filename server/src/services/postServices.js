@@ -1,11 +1,6 @@
 import Post from "./../models/post";
 import User from "./../models/user";
 
-//CRUD
-//getOne
-//add
-//update
-//delete
 export const getAllPosts = async () => {
   return await Post.find({});
 };
@@ -15,7 +10,7 @@ export const getOnePost = async (id) => {
 };
 
 export const addPost = async (post) => {
-  //find user id by name
+  //find user by name
   const user = await User.findOne({ userName: post.createdBy });
   post.createdBy = user._id;
   //add post
@@ -27,6 +22,5 @@ export const updatePost = async (post) => {
 };
 
 export const deletePost = async (id) => {
-  console.log(id);
   return await Post.findOneAndRemove({ _id: id });
 };
