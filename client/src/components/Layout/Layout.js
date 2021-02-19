@@ -11,7 +11,7 @@ export default function Layout({ children }) {
       <Header>
         <HorizontalNavbar />
       </Header>
-      <Content> {children}</Content>
+      <Content>{children}</Content>
       <Footer>
         <FooterComponent />
       </Footer>
