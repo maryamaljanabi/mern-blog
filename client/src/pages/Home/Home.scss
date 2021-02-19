@@ -1,0 +1,22 @@
+.home {
+  .home-jumbotron {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .left-section {
+      h3 {
+        font-size: 2rem;
+        margin: 0;
+      }
+      h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+    }
+    .right-section {
+      width: 37%;
+      float: right;
+    }
+  }
+}
