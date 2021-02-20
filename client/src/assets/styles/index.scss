@@ -25,6 +25,24 @@ code {
   }
 }
 
+.ant-card {
+  margin: auto !important;
+}
+.ant-card-bordered {
+  border-radius: 10px !important;
+  width: 90%;
+  margin: 1rem !important;
+  height: 90%;
+  img {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+  }
+}
+.ant-divider-horizontal.ant-divider-with-text {
+  margin: 2.5rem 0 0 0 !important;
+  font-size: 1.4rem;
+}
+
 // .ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
 //   background-color: red !important;
 // }
