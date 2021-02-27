@@ -12,18 +12,7 @@ code {
     monospace;
 }
 
-.float-right {
-  float: right;
-}
-
-.unhoverable-menu-item {
-  color: white !important;
-  opacity: 1 !important;
-  &:hover {
-    background-color: transparent !important;
-    color: inherit !important;
-  }
-}
+//ANTD OVERRIDE
 
 .ant-card {
   margin: auto !important;
@@ -43,6 +32,48 @@ code {
   font-size: 1.4rem;
 }
 
+.ant-input,
+.ant-input-affix-wrapper {
+  line-height: 2 !important;
+  border-radius: 10px !important;
+}
+
+.ant-btn {
+  border-radius: 10px !important;
+  height: 40px !important;
+}
+
+.ant-tag {
+  margin: 0.5rem 0 !important;
+}
+
 // .ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
 //   background-color: red !important;
 // }
+
+//CUSTOM CLASSES
+.float-right {
+  float: right;
+}
+
+.unhoverable-menu-item {
+  color: white !important;
+  opacity: 1 !important;
+  &:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+}
+
+.form {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-wrapper-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
