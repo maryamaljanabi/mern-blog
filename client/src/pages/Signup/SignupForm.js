@@ -11,7 +11,6 @@ export default function SignupForm() {
   const [submissionErrors, setSubmissionErrors] = useState({});
 
   const onSubmit = async (event) => {
-    console.log("submitting...");
     try {
       await authAPI.signup({ user: event });
       message.success("User created successfully");

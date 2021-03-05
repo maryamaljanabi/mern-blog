@@ -2,7 +2,6 @@ import Validator from "validator";
 import isEmpty from "lodash.isempty";
 
 export const validateSignup = (data) => {
-  console.log("data in signup validator::", data);
   let errors = {};
   // Convert empty fields to an empty string so we can use validator functions
   data.name = data.userName ? data.userName : "";

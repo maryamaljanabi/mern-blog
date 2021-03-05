@@ -4,6 +4,7 @@ import { validateSignup, validateSignin } from "./../middlewares/validator";
 import User from "./../models/user";
 import Strategy from "passport-local";
 const LocalStrategy = Strategy.Strategy;
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -58,7 +59,7 @@ router.post("/login", async (req, res) => {
     };
     jwt.sign(
       payload,
-      keys.secretOrKey,
+      process.env.SECRET_KEY,
       {
         expiresIn: 31556926, // 1 year in seconds
       },
