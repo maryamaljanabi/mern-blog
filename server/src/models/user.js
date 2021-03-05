@@ -17,11 +17,9 @@ const userSchema = Schema({
   },
   summary: {
     type: String,
-    required: true,
   },
   imagePath: {
     type: String,
-    required: true,
   },
 });
 

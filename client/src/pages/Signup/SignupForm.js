@@ -1,17 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
-import { Form, Input, Button, Tag } from "antd";
+import { Form, Input, Button, Tag, message } from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
+import { authAPI } from "./../../api/api";
+import isEmpty from "lodash.isempty";
 
 export default function SignupForm() {
-  const location = useLocation();
   const router = useHistory();
   const [initialValues, setInitialValues] = useState({});
-  const [errors, setErrors] = useState([]);
+  const [submissionErrors, setSubmissionErrors] = useState({});
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     console.log("submitting...");
-    console.log(event);
+    try {
+      await authAPI.signup({ user: event });
+      message.success("User created successfully");
+      router.push("/login");
+    } catch (error) {
+      console.log("Error registering a new user...", error.response ?? error);
+      if (error.response && error.response.data) {
+        setSubmissionErrors(error.response.data);
+      } else setSubmissionErrors({ err: "Signup error" });
+    }
   };
 
   const checkValidation = (values) => {
@@ -23,6 +33,8 @@ export default function SignupForm() {
       errors.password = "Please enter the password";
     }
     if (!values.confirmPassword?.trim()) {
+      errors.confirmPassword = "Please enter the password confirmation";
+    } else if (values.confirmPassword !== values.password) {
       errors.confirmPassword = "Passwords do not match";
     }
     if (!values.email?.trim()) {
@@ -114,11 +126,16 @@ export default function SignupForm() {
               )}
             </Field>
           </Form.Item>
-          {/* <div>
-            {errors.map((err) => (
-              <label key={err.key}>{err.message}</label>
-            ))}
-          </div> */}
+
+          {!isEmpty(submissionErrors) && (
+            <div>
+              {Object.entries(submissionErrors).map(([key, value]) => (
+                <Tag color="error" className="full-width" key={key}>
+                  {value}
+                </Tag>
+              ))}
+            </div>
+          )}
 
           <div className="buttons-wrapper-vertical">
             <Button disabled={submitting} htmlType="submit" type="primary">

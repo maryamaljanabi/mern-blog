@@ -1,14 +1,7 @@
 import express from "express";
-import {
-  getAllUsers,
-  getOneUser,
-  addUser,
-  updateUser,
-  deleteUser,
-} from "../services/userServices";
 import middleware from "./../middlewares/index";
 import { validateSignup, validateSignin } from "./../middlewares/validator";
-import passport from "passport";
+import User from "./../models/user";
 import Strategy from "passport-local";
 const LocalStrategy = Strategy.Strategy;
 
@@ -29,7 +22,7 @@ router.post("/signup", [middleware.isNotLoggedIn], async (req, res) => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
     }
-    const newUser = await new User({ reqUser });
+    const newUser = await new User({ ...reqUser });
     newUser.password = newUser.encryptPassword(reqUser.password);
     await newUser.save();
     return res.json(user);
@@ -43,7 +36,7 @@ router.post("/login", async (req, res) => {
   const reqUser = req.body.user;
 
   // Validation
-  const { errors, isValid } = validateSignup(reqUser);
+  const { errors, isValid } = validateSignin(reqUser);
   if (!isValid) {
     return res.status(400).json(errors);
   }

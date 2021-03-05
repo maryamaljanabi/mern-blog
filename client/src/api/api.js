@@ -5,6 +5,12 @@ const axiosConfig = {
 
 const axios = Axios.create(axiosConfig);
 
+// AUTH
+export const authAPI = {
+  login: (data) => axios.get(`/auth/login`, data),
+  signup: (data) => axios.post(`/auth/signup`, data),
+};
+
 // USERS
 export const usersAPI = {
   getAll: () => axios.get(`/users`),
