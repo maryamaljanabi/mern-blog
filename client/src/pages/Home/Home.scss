@@ -4,7 +4,8 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    .left-section {
+    .left-section,
+    .centered-section {
       h3 {
         font-size: 2rem;
         margin: 0;
@@ -13,6 +14,9 @@
         font-size: 2.5rem;
         font-weight: bold;
       }
+    }
+    .centered-section {
+      text-align: center;
     }
     .right-section {
       width: 37%;

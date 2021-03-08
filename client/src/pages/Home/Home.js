@@ -12,6 +12,14 @@ const { Meta } = Card;
 export default function Home() {
   const router = useHistory();
   const [postsData, setPostsData] = useState([]);
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
 
   useEffect(() => {
     (async () => {
@@ -28,26 +36,44 @@ export default function Home() {
     <div className="home">
       <Jumbotron>
         <div className="home-jumbotron">
-          <div className="left-section">
-            <h3>A blogging website for</h3>
-            <h2>EVERYONE</h2>
-            <Button
-              type="primary"
-              shape="round"
-              icon={<RightCircleOutlined />}
-              size="large"
-              onClick={() => router.push("/signin")}
-            >
-              Get Started
-            </Button>
-          </div>
-          <div className="right-section">
-            <Player
-              autoplay
-              loop
-              src="https://assets10.lottiefiles.com/packages/lf20_GtqlRg.json"
-            />
-          </div>
+          {width <= 650 ? (
+            <div className="centered-section">
+              <h3>A blogging website for</h3>
+              <h2>EVERYONE</h2>
+              <Button
+                type="primary"
+                shape="round"
+                icon={<RightCircleOutlined />}
+                size="large"
+                onClick={() => router.push("/signin")}
+              >
+                Get Started
+              </Button>
+            </div>
+          ) : (
+            <>
+              <div className="left-section">
+                <h3>A blogging website for</h3>
+                <h2>EVERYONE</h2>
+                <Button
+                  type="primary"
+                  shape="round"
+                  icon={<RightCircleOutlined />}
+                  size="large"
+                  onClick={() => router.push("/signin")}
+                >
+                  Get Started
+                </Button>
+              </div>
+              <div className="right-section">
+                <Player
+                  autoplay
+                  loop
+                  src="https://assets10.lottiefiles.com/packages/lf20_GtqlRg.json"
+                />
+              </div>{" "}
+            </>
+          )}
         </div>
       </Jumbotron>
       <Divider orientation="center">Most recent posts</Divider>
