@@ -56,6 +56,7 @@ router.post("/login", async (req, res) => {
     const payload = {
       id: user._id,
       userName: user.userName,
+      imageUrl: user.imagePath,
     };
     jwt.sign(
       payload,
@@ -65,8 +66,7 @@ router.post("/login", async (req, res) => {
       },
       (err, token) => {
         res.json({
-          success: true,
-          token: "Bearer " + token,
+          token: token,
         });
       }
     );

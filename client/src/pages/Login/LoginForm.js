@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Form, Input, Button, Tag, message } from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
 import { authAPI } from "./../../api/api";
 import isEmpty from "lodash.isempty";
+import { useDispatch, useSelector } from "react-redux";
+import { userAuthActions } from "./../../redux/actions/actionCreator";
 
 export default function LoginForm() {
   const router = useHistory();
   const [initialValues, setInitialValues] = useState({});
   const [submissionErrors, setSubmissionErrors] = useState({});
+  const dispatch = useDispatch();
+  const reduxState = useSelector((st) => st.user);
 
   const onSubmit = async (event) => {
     try {
-      const token = await authAPI.login({ user: event });
-      console.log(token);
-      message.success("User logged in successfully");
-      router.push("/");
+      dispatch(userAuthActions.login({ user: event }));
     } catch (error) {
       console.log("Error logging in user...", error.response ?? error);
       if (error.response && error.response.data) {
@@ -34,6 +35,16 @@ export default function LoginForm() {
     }
     return errors;
   };
+
+  useEffect(() => {
+    if (reduxState.error) {
+      setSubmissionErrors([reduxState.error]);
+    }
+    if (reduxState.isLoggedIn) {
+      message.success("User logged in successfully");
+      router.push("/");
+    }
+  }, [reduxState]);
 
   return (
     <FinalForm
