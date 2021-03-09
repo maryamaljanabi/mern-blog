@@ -7,10 +7,8 @@ import { saveState } from "./../store/sessionStorage";
 function* createLogin(action) {
   try {
     const response = yield authAPI.login(action.payload);
-    console.log(response.data);
     if (response.data.token) {
       const token = response.data.token;
-      // store token in browser session
       saveState({
         isLoggedIn: true,
         error: "",
@@ -27,7 +25,6 @@ function* createLogin(action) {
   }
 }
 
-//listener
 export function* createLoginStart() {
   yield takeEvery(actions.LOGIN, createLogin);
 }
