@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -54,6 +56,19 @@ code {
 // }
 
 //CUSTOM CLASSES
+
+.form-container {
+  width: 60%;
+  background-color: white;
+  color: black;
+  margin: 2rem auto;
+  padding: 1rem;
+  -webkit-box-shadow: -2px 5px 14px -1px rgba(0, 0, 0, 0.77);
+  box-shadow: -2px 5px 14px -1px rgba(0, 0, 0, 0.2);
+  border: 1px solid $LightestGray;
+  border-radius: 10px;
+}
+
 .float-right {
   float: right;
 }
@@ -77,6 +92,12 @@ code {
 .buttons-wrapper-vertical {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+}
+
+.buttons-wrapper-horizontal {
+  display: flex;
+  flex-direction: row;
   gap: 0.5rem;
 }
 

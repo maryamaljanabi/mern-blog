@@ -7,12 +7,15 @@ import { RightCircleOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { postsAPI } from "../../api/api";
 import defaultPostImage from "./../../assets/images/default-post-image.jpg";
+import { useSelector } from "react-redux";
 const { Meta } = Card;
 
 export default function Home() {
   const router = useHistory();
+  const userState = useSelector((st) => st.user);
   const [postsData, setPostsData] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     function handleResize() {
       setWidth(window.innerWidth);
@@ -34,48 +37,97 @@ export default function Home() {
 
   return (
     <div className="home">
-      <Jumbotron>
-        <div className="home-jumbotron">
-          {width <= 650 ? (
-            <div className="centered-section">
-              <h3>A blogging website for</h3>
-              <h2>EVERYONE</h2>
-              <Button
-                type="primary"
-                shape="round"
-                icon={<RightCircleOutlined />}
-                size="large"
-                onClick={() => router.push("/signin")}
-              >
-                Get Started
-              </Button>
+      {userState.isLoggedIn ? (
+        <>
+          <Jumbotron>
+            <div className="home-jumbotron">
+              {width <= 650 ? (
+                <div className="centered-section">
+                  <h3>A blogging website for</h3>
+                  <h2>EVERYONE</h2>
+                  <Button
+                    type="primary"
+                    shape="round"
+                    icon={<RightCircleOutlined />}
+                    size="large"
+                    onClick={() => router.push("/signin")}
+                  >
+                    Write a post now!
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <div className="left-section">
+                    <h3>A blogging website for</h3>
+                    <h2>EVERYONE</h2>
+                    <Button
+                      type="primary"
+                      shape="round"
+                      icon={<RightCircleOutlined />}
+                      size="large"
+                      onClick={() => router.push("/signin")}
+                    >
+                      Get Started
+                    </Button>
+                  </div>
+                  <div className="right-section">
+                    <Player
+                      autoplay
+                      loop
+                      src="https://assets10.lottiefiles.com/packages/lf20_GtqlRg.json"
+                    />
+                  </div>
+                </>
+              )}
             </div>
-          ) : (
-            <>
-              <div className="left-section">
-                <h3>A blogging website for</h3>
-                <h2>EVERYONE</h2>
-                <Button
-                  type="primary"
-                  shape="round"
-                  icon={<RightCircleOutlined />}
-                  size="large"
-                  onClick={() => router.push("/signin")}
-                >
-                  Get Started
-                </Button>
-              </div>
-              <div className="right-section">
-                <Player
-                  autoplay
-                  loop
-                  src="https://assets10.lottiefiles.com/packages/lf20_GtqlRg.json"
-                />
-              </div>{" "}
-            </>
-          )}
-        </div>
-      </Jumbotron>
+          </Jumbotron>
+        </>
+      ) : (
+        <>
+          <Jumbotron>
+            <div className="home-jumbotron">
+              {width <= 650 ? (
+                <div className="centered-section">
+                  <h3>A blogging website for</h3>
+                  <h2>EVERYONE</h2>
+                  <Button
+                    type="primary"
+                    shape="round"
+                    icon={<RightCircleOutlined />}
+                    size="large"
+                    onClick={() => router.push("/signin")}
+                  >
+                    Get Started
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <div className="left-section">
+                    <h3>A blogging website for</h3>
+                    <h2>EVERYONE</h2>
+                    <Button
+                      type="primary"
+                      shape="round"
+                      icon={<RightCircleOutlined />}
+                      size="large"
+                      onClick={() => router.push("/signin")}
+                    >
+                      Get Started
+                    </Button>
+                  </div>
+                  <div className="right-section">
+                    <Player
+                      autoplay
+                      loop
+                      src="https://assets10.lottiefiles.com/packages/lf20_GtqlRg.json"
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+          </Jumbotron>
+        </>
+      )}
       <Divider orientation="center">Most recent posts</Divider>
       <Row className="posts-container" type="flex">
         {postsData.map((item) => (

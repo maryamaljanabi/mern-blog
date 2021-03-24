@@ -3,6 +3,7 @@ import {
   LoginOutlined,
   UserAddOutlined,
   SettingOutlined,
+  FormOutlined,
 } from "@ant-design/icons";
 import { Menu, Avatar } from "antd";
 import blogLogo from "./../../assets/images/blogging.png";
@@ -24,23 +25,32 @@ export default function HorizontalNavbar() {
         </Menu.Item>
 
         {userState.isLoggedIn ? (
-          <SubMenu
-            key="SubMenu"
-            icon={<Avatar src={userState.user.imageUrl} shape="circle" />}
-            title={" " + userState.user.userName}
-            className="float-right unhoverable-menu-item"
-          >
-            <Menu.Item key="userProfile" icon={<SettingOutlined />}>
-              <a href="/user/settings">User Settings</a>
-            </Menu.Item>
-            <Menu.Item
-              key="logout"
-              icon={<LoginOutlined />}
-              onClick={() => dispatch(userAuthActions.logout())}
+          <>
+            <SubMenu
+              key="SubMenu"
+              icon={<Avatar src={userState.user.imageUrl} shape="circle" />}
+              title={" " + userState.user.userName}
+              className="float-right unhoverable-menu-item"
             >
-              Logout
+              <Menu.Item key="userProfile" icon={<SettingOutlined />}>
+                <a href="/user/settings">User Settings</a>
+              </Menu.Item>
+              <Menu.Item
+                key="logout"
+                icon={<LoginOutlined />}
+                onClick={() => dispatch(userAuthActions.logout())}
+              >
+                Logout
+              </Menu.Item>
+            </SubMenu>
+            <Menu.Item
+              key="newPost"
+              icon={<FormOutlined />}
+              className="float-right"
+            >
+              <a href="/posts/new">New Post</a>
             </Menu.Item>
-          </SubMenu>
+          </>
         ) : (
           <>
             <Menu.Item
