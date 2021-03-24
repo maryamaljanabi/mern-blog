@@ -9,6 +9,10 @@ export const getOnePost = async (id) => {
   return await Post.findById(id);
 };
 
+export const getPostByUserID = async (userId) => {
+  return await Post.find({ createdBy: userId });
+};
+
 export const addPost = async (post) => {
   //find user by name
   const user = await User.findById(post.createdBy);

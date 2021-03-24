@@ -23,6 +23,7 @@ export const usersAPI = {
 // POSTS
 export const postsAPI = {
   getAll: () => axios.get(`/posts`),
+  getPostByUserId: (id) => axios.get(`/posts/user/${id}`),
   getOne: (id) => axios.get(`/posts/${id}`),
   add: (data) => axios.post(`/posts`, data),
   update: (data) => axios.put(`/posts`, data),
