@@ -1,14 +1,36 @@
-import React from "react";
-import { Row, Col, Card } from "antd";
+import React, { useState } from "react";
+import { Row, Col, Card, Modal, message } from "antd";
 import defaultPostImage from "./../../assets/images/default-post-image.jpg";
 import { EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
 import { useHistory } from "react-router";
 import "./PostsGrid.scss";
+import { postsAPI } from "./../../api/api";
 
 const { Meta } = Card;
 
-export default function PostsGrid({ data }) {
+export default function PostsGrid({ data, reloadPosts }) {
   const router = useHistory();
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [deletePostID, setDeletePostID] = useState(null);
+  const [reload, setReload] = useState(false);
+
+  const confirmDelete = async () => {
+    try {
+      await postsAPI.delete(deletePostID);
+      setReload(!reload);
+      reloadPosts(!reload);
+      setDeleteModal(false);
+      message.success("Post deleted successfully");
+    } catch (error) {
+      console.log("Error deleting post...", error.response ?? error);
+      message.error("Error deleting post");
+      if (error.response && error.response.data) {
+        message.error(error.response.data);
+      } else message.error("Error deleting post");
+      setDeleteModal(false);
+    }
+  };
+
   return (
     <div>
       <Row className="posts-container" type="flex">
@@ -28,22 +50,38 @@ export default function PostsGrid({ data }) {
               actions={[
                 <EditTwoTone
                   key="edit"
-                  twoToneColor="red"
                   onClick={() =>
                     router.push("/posts/edit", { postID: item._id })
                   }
                 />,
-                <DeleteTwoTone key="delete" />,
+                <DeleteTwoTone
+                  key="delete"
+                  twoToneColor="red"
+                  onClick={() => {
+                    setDeletePostID(item._id);
+                    setDeleteModal(true);
+                  }}
+                />,
               ]}
             >
               <Meta
                 title={item.title}
-                description={item.content.substring(1, 100) + "..."}
+                description={item.content.substring(0, 100) + "..."}
               />
             </Card>
           </Col>
         ))}
       </Row>
+
+      <Modal
+        title="Delete Confirmation"
+        visible={deleteModal}
+        onOk={() => confirmDelete()}
+        onCancel={() => setDeleteModal(false)}
+        centered
+      >
+        <p>Are you sure you want to delete post?</p>
+      </Modal>
     </div>
   );
 }

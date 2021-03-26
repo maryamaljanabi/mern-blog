@@ -23,7 +23,6 @@ code {
   border-radius: 10px !important;
   width: 90%;
   margin: 1rem !important;
-  height: 90%;
   img {
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
@@ -112,5 +111,9 @@ code {
 }
 
 .ant-card-body {
-  height: 100px;
+  height: 150px;
+}
+
+.ant-card-actions {
+  border-radius: 0 0 10px 10px;
 }
