@@ -1,0 +1,23 @@
+@import "./../../assets/styles/variables.scss";
+
+.view-post {
+  background-color: white;
+  color: black;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 10px !important;
+  width: 70%;
+  .post-header {
+    h1 {
+      font-size: 3rem;
+      line-height: 3.5rem;
+    }
+    p {
+      color: $DarkGray;
+    }
+  }
+  .post-content {
+    white-space: pre-line;
+    margin: 2rem auto;
+  }
+}

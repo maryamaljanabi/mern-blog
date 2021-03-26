@@ -68,10 +68,6 @@ code {
   border-radius: 5px !important;
 }
 
-// .ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover {
-//   background-color: red !important;
-// }
-
 //CUSTOM CLASSES
 
 .m-auto {
@@ -139,6 +135,14 @@ code {
 
 .centered-text {
   text-align: center;
+}
+
+.two-cols {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 2rem auto !important;
 }
 
 .full-width {

@@ -7,6 +7,7 @@ import NewPost from "./pages/Posts/NewPost";
 import UserPosts from "./pages/Posts/UserPosts";
 import EditPost from "./pages/Posts/EditPost";
 import UserProfile from "./pages/Users/UserProfile";
+import Post from "./pages/Posts/Post";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/user/posts" component={UserPosts} />
         <Route exact path="/user/profile" component={UserProfile} />
+        <Route exact path="/posts/view" component={Post} />
         <Route exact path="/posts/new" component={NewPost} />
         <Route exact path="/posts/edit" component={EditPost} />
       </Switch>

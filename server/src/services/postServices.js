@@ -6,7 +6,19 @@ export const getAllPosts = async () => {
 };
 
 export const getOnePost = async (id) => {
-  return await Post.findById(id);
+  //find post
+  const post = await Post.findById(id);
+  let res;
+  if (post) {
+    //get the name of the creator
+    const user = await User.findById(post.createdBy);
+    res = {
+      ...post.toObject(),
+      createdByName: user.userName,
+      userImageUrl: user.imagePath,
+    };
+  }
+  return res;
 };
 
 export const getPostByUserID = async (userId) => {

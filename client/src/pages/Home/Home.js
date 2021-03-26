@@ -51,7 +51,7 @@ export default function Home() {
                     shape="round"
                     icon={<RightCircleOutlined />}
                     size="large"
-                    onClick={() => router.push("/signin")}
+                    onClick={() => router.push("/posts/new")}
                   >
                     Write a post now!
                   </Button>
@@ -66,9 +66,9 @@ export default function Home() {
                       shape="round"
                       icon={<RightCircleOutlined />}
                       size="large"
-                      onClick={() => router.push("/signin")}
+                      onClick={() => router.push("/posts/new")}
                     >
-                      Get Started
+                      Write a post now!
                     </Button>
                   </div>
                   <div className="right-section">
@@ -96,7 +96,7 @@ export default function Home() {
                     shape="round"
                     icon={<RightCircleOutlined />}
                     size="large"
-                    onClick={() => router.push("/signin")}
+                    onClick={() => router.push("/login")}
                   >
                     Get Started
                   </Button>
@@ -111,7 +111,7 @@ export default function Home() {
                       shape="round"
                       icon={<RightCircleOutlined />}
                       size="large"
-                      onClick={() => router.push("/signin")}
+                      onClick={() => router.push("/login")}
                     >
                       Get Started
                     </Button>

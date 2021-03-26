@@ -29,8 +29,8 @@ export default function EditPost() {
           console.log("Error retrieving one post...", error);
         }
       } else {
-        message.error("PostID was not provided");
-        router.push("/posts");
+        message.error("Post ID was not provided");
+        router.goBack();
       }
     })();
   }, [location.state]);

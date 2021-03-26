@@ -69,6 +69,7 @@ export default function PostsGrid({ data, reloadPosts }) {
                     ]
                   : []
               }
+              onClick={() => router.push("/posts/view", { postID: item._id })}
             >
               <Meta
                 title={item.title}
