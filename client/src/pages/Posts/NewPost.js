@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Form, Input, Button, Tag, message } from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
 import isEmpty from "lodash.isempty";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import TextArea from "antd/lib/input/TextArea";
-import { postsAPI, usersAPI } from "./../../api/api";
+import { postsAPI } from "./../../api/api";
 
 export default function NewPost() {
   const router = useHistory();

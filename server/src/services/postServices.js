@@ -22,7 +22,7 @@ export const addPost = async (post) => {
 };
 
 export const updatePost = async (post) => {
-  return await Post.findByIdAndUpdate(post.id, post);
+  return await Post.findByIdAndUpdate(post._id, post);
 };
 
 export const deletePost = async (id) => {
