@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import { postsAPI } from "../../api/api";
 import defaultPostImage from "./../../assets/images/default-post-image.jpg";
 import { useSelector } from "react-redux";
+import PostsGrid from "./../../components/PostsGrid/PostsGrid";
 const { Meta } = Card;
 
 export default function Home() {
@@ -129,26 +130,7 @@ export default function Home() {
         </>
       )}
       <Divider orientation="center">Most recent posts</Divider>
-      <Row className="posts-container" type="flex">
-        {postsData.map((item) => (
-          <Col xs={24} sm={12} md={8} lg={8} key={item._id}>
-            <Card
-              hoverable
-              cover={
-                <img
-                  alt={item.title}
-                  src={item.imagePath ? item.imagePath : defaultPostImage}
-                />
-              }
-            >
-              <Meta
-                title={item.title}
-                description={item.content.substring(1, 100) + "..."}
-              />
-            </Card>
-          </Col>
-        ))}
-      </Row>
+      <PostsGrid data={postsData} />
     </div>
   );
 }

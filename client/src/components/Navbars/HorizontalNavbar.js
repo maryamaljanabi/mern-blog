@@ -4,6 +4,7 @@ import {
   UserAddOutlined,
   SettingOutlined,
   FormOutlined,
+  CopyOutlined,
 } from "@ant-design/icons";
 import { Menu, Avatar } from "antd";
 import blogLogo from "./../../assets/images/blogging.png";
@@ -34,6 +35,9 @@ export default function HorizontalNavbar() {
             >
               <Menu.Item key="userProfile" icon={<SettingOutlined />}>
                 <a href="/user/settings">User Settings</a>
+              </Menu.Item>
+              <Menu.Item key="userPosts" icon={<CopyOutlined />}>
+                <a href="/posts">User Posts</a>
               </Menu.Item>
               <Menu.Item
                 key="logout"
