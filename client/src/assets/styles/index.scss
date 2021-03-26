@@ -23,11 +23,21 @@ code {
   border-radius: 10px !important;
   width: 90%;
   margin: 1rem !important;
+  height: 500px;
   img {
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
   }
 }
+
+.ant-card-body {
+  height: 150px;
+}
+
+.ant-card-actions {
+  border-radius: 0 0 10px 10px;
+}
+
 .ant-divider-horizontal.ant-divider-with-text {
   margin: 2.5rem 0 0 0 !important;
   font-size: 1.4rem;
@@ -108,12 +118,4 @@ code {
   width: 100% !important;
   padding: 0.5rem 0.3rem !important;
   border-radius: 5px !important;
-}
-
-.ant-card-body {
-  height: 150px;
-}
-
-.ant-card-actions {
-  border-radius: 0 0 10px 10px;
 }

@@ -5,6 +5,7 @@ import { EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
 import { useHistory } from "react-router";
 import "./PostsGrid.scss";
 import { postsAPI } from "./../../api/api";
+import { useSelector } from "react-redux";
 
 const { Meta } = Card;
 
@@ -13,6 +14,7 @@ export default function PostsGrid({ data, reloadPosts }) {
   const [deleteModal, setDeleteModal] = useState(false);
   const [deletePostID, setDeletePostID] = useState(null);
   const [reload, setReload] = useState(false);
+  const userState = useSelector((st) => st.user);
 
   const confirmDelete = async () => {
     try {
@@ -47,22 +49,26 @@ export default function PostsGrid({ data, reloadPosts }) {
                   />
                 </div>
               }
-              actions={[
-                <EditTwoTone
-                  key="edit"
-                  onClick={() =>
-                    router.push("/posts/edit", { postID: item._id })
-                  }
-                />,
-                <DeleteTwoTone
-                  key="delete"
-                  twoToneColor="red"
-                  onClick={() => {
-                    setDeletePostID(item._id);
-                    setDeleteModal(true);
-                  }}
-                />,
-              ]}
+              actions={
+                item.createdBy === userState.user.id
+                  ? [
+                      <EditTwoTone
+                        key="edit"
+                        onClick={() =>
+                          router.push("/posts/edit", { postID: item._id })
+                        }
+                      />,
+                      <DeleteTwoTone
+                        key="delete"
+                        twoToneColor="red"
+                        onClick={() => {
+                          setDeletePostID(item._id);
+                          setDeleteModal(true);
+                        }}
+                      />,
+                    ]
+                  : []
+              }
             >
               <Meta
                 title={item.title}
