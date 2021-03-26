@@ -49,6 +49,14 @@ code {
   border-radius: 10px !important;
 }
 
+.no-radius {
+  .ant-input,
+  .ant-input-affix-wrapper {
+    line-height: 2 !important;
+    border-radius: 2px !important;
+  }
+}
+
 .ant-btn {
   border-radius: 10px !important;
   height: 40px !important;
@@ -65,6 +73,25 @@ code {
 // }
 
 //CUSTOM CLASSES
+
+.m-auto {
+  margin: auto;
+}
+
+.disabled {
+  background: white;
+  color: black;
+  border: none !important;
+  box-shadow: none !important;
+  font-weight: bold;
+  padding-left: 0 !important;
+  cursor: auto;
+  &:hover,
+  &:active {
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
 
 .form-container {
   width: 60%;

@@ -1,0 +1,32 @@
+@import "./../../assets/styles/variables.scss";
+
+.user-profile {
+  background-color: white;
+  color: black;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 10px !important;
+  width: 60%;
+  .user-image {
+    margin: auto;
+    .image {
+      border-radius: 50%;
+      object-fit: cover;
+      width: 300px;
+      height: 300px;
+    }
+    .ant-image-mask:hover {
+      border-radius: 50%;
+    }
+  }
+  .user-info {
+    .form {
+      //   background-color: white;
+      //   color: black;
+      //   margin: 2rem auto;
+      //   padding: 2rem;
+      //   border-radius: 10px !important;
+      //   width: 60%;
+    }
+  }
+}

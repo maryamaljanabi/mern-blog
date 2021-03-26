@@ -34,10 +34,10 @@ export default function HorizontalNavbar() {
               className="float-right unhoverable-menu-item"
             >
               <Menu.Item key="userProfile" icon={<SettingOutlined />}>
-                <a href="/user/settings">User Settings</a>
+                <a href="/user/profile">User Settings</a>
               </Menu.Item>
               <Menu.Item key="userPosts" icon={<CopyOutlined />}>
-                <a href="/posts">User Posts</a>
+                <a href="/user/posts">User Posts</a>
               </Menu.Item>
               <Menu.Item
                 key="logout"

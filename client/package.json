@@ -11,6 +11,7 @@
     "axios": "^0.21.1",
     "final-form": "^4.20.1",
     "jsonwebtoken": "^8.5.1",
+    "lodash.clonedeep": "^4.5.0",
     "lodash.isempty": "^4.4.0",
     "moment": "^2.29.1",
     "node-sass": "^5.0.0",

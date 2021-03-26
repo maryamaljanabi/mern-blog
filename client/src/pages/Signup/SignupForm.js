@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Form, Input, Button, Tag, message } from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
 import { authAPI } from "./../../api/api";
