@@ -31,8 +31,8 @@ export default function Post() {
           console.log("Error retrieving one post...", error);
         }
       } else {
-        message.error("Post ID was not provided");
-        router.goBack();
+        message.error("An error occured while retrieving post ID");
+        router.push("/");
       }
     })();
   }, [location.state]);

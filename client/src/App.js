@@ -8,19 +8,21 @@ import UserPosts from "./pages/Posts/UserPosts";
 import EditPost from "./pages/Posts/EditPost";
 import UserProfile from "./pages/Users/UserProfile";
 import Post from "./pages/Posts/Post";
+import LoggedInRoute from "./LoggedInRoute";
+import NotLoggedInRoute from "./NotLoggedInRoute";
 
 function App() {
   return (
     <Layout>
       <Switch>
         <Route exact path={["/", "/home"]} component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={Signup} />
+        <NotLoggedInRoute exact path="/login" component={Login} />
+        <NotLoggedInRoute exact path="/signup" component={Signup} />
         <Route exact path="/user/posts" component={UserPosts} />
         <Route exact path="/user/profile" component={UserProfile} />
         <Route exact path="/posts/view" component={Post} />
-        <Route exact path="/posts/new" component={NewPost} />
-        <Route exact path="/posts/edit" component={EditPost} />
+        <LoggedInRoute exact path="/posts/new" component={NewPost} />
+        <LoggedInRoute exact path="/posts/edit" component={EditPost} />
       </Switch>
     </Layout>
   );
