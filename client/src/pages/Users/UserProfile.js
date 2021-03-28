@@ -9,10 +9,11 @@ import {
 } from "@ant-design/icons";
 import { Form as FinalForm, Field } from "react-final-form";
 import isEmpty from "lodash.isempty";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { usersAPI } from "./../../api/api";
 import defaultUser from "./../../assets/images/default-user.png";
 import "./UserProfile.scss";
+import { userAuthActions } from "./../../redux/actions/actionCreator";
 
 export default function UserProfile() {
   const router = useHistory();
@@ -21,6 +22,7 @@ export default function UserProfile() {
   const userState = useSelector((st) => st.user);
   const [editing, setEditing] = useState(false);
   const [editingPassword, setEditingPassword] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
@@ -64,6 +66,7 @@ export default function UserProfile() {
     setSubmissionErrors([]);
     try {
       await usersAPI.update({ user: event });
+      dispatch(userAuthActions.updateUser(event));
       message.success("User profile updated successfully");
       setEditing(false);
       setEditingPassword(false);

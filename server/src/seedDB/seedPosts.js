@@ -8,19 +8,16 @@ import connectDB from "./../db/dbConfig";
 connectDB();
 
 (async function seedDB() {
-  async function seedPost(title, content, imageUrl, userName) {
+  async function seedPost(title, content, imagePath, userName) {
     try {
       const user = await User.findOne({ userName: userName });
-      console.log(user);
       const post = await new Post({
         title: title,
         content: content,
-        imagePath: imageUrl,
+        imagePath: imagePath,
         createdBy: user._id,
       });
       await post.save();
-      //   const all = await Post.find({});
-      //   console.log(all);
     } catch (error) {
       console.log(error);
       return error;

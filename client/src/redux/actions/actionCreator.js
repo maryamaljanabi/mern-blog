@@ -9,6 +9,10 @@ export const userAuthActions = {
     type: userAuth.LOGIN_SUCCESS,
     payload: payload,
   }),
+  updateUser: (payload) => ({
+    type: userAuth.UPDATE_USER,
+    payload: payload,
+  }),
   loginFailed: (err) => ({
     type: userAuth.LOGIN_FAILED,
     payload: err,

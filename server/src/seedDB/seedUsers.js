@@ -6,14 +6,14 @@ import connectDB from "./../db/dbConfig";
 
 connectDB();
 (async function seedDB() {
-  async function seedUser(userName, email, password, summary, imageUrl) {
+  async function seedUser(userName, email, password, summary, imagePath) {
     try {
       const user = await new User({
         userName,
         email,
         password,
         summary,
-        imagePath: imageUrl,
+        imagePath: imagePath,
       });
       await user.save(function (err) {
         if (err) {
@@ -22,8 +22,6 @@ connectDB();
         }
       });
       console.log("User added succefully!");
-      // const all = await User.find({});
-      // console.log(all);
     } catch (error) {
       console.log(error);
       return error;

@@ -10,7 +10,7 @@ const emptyState = {
   user: {
     id: "",
     userName: "",
-    imageUrl: "",
+    imagePath: "",
   },
 };
 if (loadState() && loadState().token) {
@@ -20,7 +20,7 @@ if (loadState() && loadState().token) {
     user: {
       id: decodedToken.id,
       userName: decodedToken.userName,
-      imageUrl: decodedToken.imageUrl,
+      imagePath: decodedToken.imagePath,
     },
   };
 } else {
@@ -30,19 +30,31 @@ if (loadState() && loadState().token) {
 export const userAuthReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.LOGIN_SUCCESS:
-      let returnedState;
+      let newState;
       if (loadState() && loadState().token) {
         const decodedToken = jwt.decode(loadState().token);
-        returnedState = {
+        newState = {
           ...loadState(),
           user: {
             id: decodedToken.id,
             userName: decodedToken.userName,
-            imageUrl: decodedToken.imageUrl,
+            imagePath: decodedToken.imagePath,
           },
         };
       }
-      return returnedState;
+      return newState;
+
+    case actions.UPDATE_USER:
+      let updatedState = {
+        ...state,
+        user: {
+          ...state.user,
+          imagePath: action.payload.imagePath,
+          userName: action.payload.userName,
+        },
+      };
+      saveState(updatedState);
+      return updatedState;
 
     case actions.LOGOUT:
       saveState(emptyState);
@@ -50,13 +62,13 @@ export const userAuthReducer = (state = initialState, action) => {
 
     case actions.LOGIN_FAILED:
       if (action.payload) {
-        let returnedState = {
+        let newState = {
           token: null,
           isLoggedIn: false,
           error: action.payload,
         };
-        saveState(returnedState);
-        return returnedState;
+        saveState(newState);
+        return newState;
       }
 
     default:

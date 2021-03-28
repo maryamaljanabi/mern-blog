@@ -29,7 +29,7 @@ export default function HorizontalNavbar() {
           <>
             <SubMenu
               key="SubMenu"
-              icon={<Avatar src={userState.user.imageUrl} shape="circle" />}
+              icon={<Avatar src={userState.user.imagePath} shape="circle" />}
               title={" " + userState.user.userName}
               className="float-right unhoverable-menu-item"
             >
