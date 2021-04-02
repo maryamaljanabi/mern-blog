@@ -145,7 +145,7 @@ export default function SignupForm() {
               type="link"
               onClick={() => router.push("login")}
             >
-              Already have an account? Signin!
+              Already have an account? Login!
             </Button>
           </div>
         </form>

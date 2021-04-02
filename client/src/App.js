@@ -10,6 +10,7 @@ import UserProfile from "./pages/Users/UserProfile";
 import Post from "./pages/Posts/Post";
 import LoggedInRoute from "./LoggedInRoute";
 import NotLoggedInRoute from "./NotLoggedInRoute";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/posts/view" component={Post} />
         <LoggedInRoute exact path="/posts/new" component={NewPost} />
         <LoggedInRoute exact path="/posts/edit" component={EditPost} />
+        <Route component={NotFound} />
       </Switch>
     </Layout>
   );
