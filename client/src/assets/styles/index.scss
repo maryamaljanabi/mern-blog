@@ -70,6 +70,24 @@ code {
 
 //CUSTOM CLASSES
 
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.page-content {
+  padding-bottom: 2.5rem;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  background-color: $DarkBlue;
+  color: white;
+}
+
 .m-auto {
   margin: auto;
 }
@@ -133,6 +151,10 @@ code {
   gap: 0.5rem;
 }
 
+.my-2-auto {
+  margin: 2rem auto;
+}
+
 .centered-text {
   text-align: center;
 }
@@ -143,6 +165,47 @@ code {
   justify-content: space-between;
   align-items: baseline;
   margin: 2rem auto !important;
+}
+
+.center-panel {
+  background-color: white;
+  color: black;
+  margin: 2rem;
+  padding: 1rem;
+  -webkit-box-shadow: -2px 5px 14px -1px rgba(0, 0, 0, 0.77);
+  box-shadow: -2px 5px 14px -1px rgba(0, 0, 0, 0.2);
+  border: 1px solid $LightestGray;
+  border-radius: 10px;
+}
+
+.center-panel-small {
+  background-color: white;
+  color: black;
+  margin: 2rem auto;
+  padding: 1rem;
+  -webkit-box-shadow: -2px 5px 14px -1px rgba(0, 0, 0, 0.77);
+  box-shadow: -2px 5px 14px -1px rgba(0, 0, 0, 0.2);
+  border: 1px solid $LightestGray;
+  border-radius: 10px;
+  width: 60%;
+}
+
+.left-panel {
+  width: 40vw;
+  background-color: white;
+  color: black;
+  margin: 2rem;
+  padding: 1rem;
+  -webkit-box-shadow: -2px 5px 14px -1px rgba(0, 0, 0, 0.77);
+  box-shadow: -2px 5px 14px -1px rgba(0, 0, 0, 0.2);
+  border: 1px solid $LightestGray;
+  border-radius: 10px;
+}
+.right-panel {
+  margin: 2rem;
+  padding: 2rem;
+  width: 37%;
+  float: right;
 }
 
 .full-width {

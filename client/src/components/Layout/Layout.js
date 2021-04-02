@@ -11,10 +11,12 @@ export default function Layout({ children }) {
       <Header>
         <HorizontalNavbar />
       </Header>
-      <Content>{children}</Content>
-      <Footer>
-        <FooterComponent />
-      </Footer>
+      <div className="page-container">
+        <div className="page-content">{children}</div>
+        <div className="footer">
+          <FooterComponent />
+        </div>
+      </div>
     </AntdLayout>
   );
 }
