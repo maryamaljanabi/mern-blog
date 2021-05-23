@@ -9,7 +9,6 @@ A work in progress...
 - [Features](#features)
 - [Technology](#technology)
 - [Database Models](#database)
-- [Color Palette](#colors)
 - [Run](#run)
 - [License](#license)
 

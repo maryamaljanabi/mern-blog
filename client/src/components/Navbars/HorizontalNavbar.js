@@ -4,7 +4,6 @@ import {
   UserAddOutlined,
   SettingOutlined,
   FormOutlined,
-  CopyOutlined,
 } from "@ant-design/icons";
 import { Menu, Avatar } from "antd";
 import blogLogo from "./../../assets/images/blogging.png";
@@ -29,15 +28,12 @@ export default function HorizontalNavbar() {
           <>
             <SubMenu
               key="SubMenu"
-              icon={<Avatar src={userState.user.imagePath} shape="circle" />}
+              icon={<Avatar src={userState.user.imageUrl} shape="circle" />}
               title={" " + userState.user.userName}
               className="float-right unhoverable-menu-item"
             >
               <Menu.Item key="userProfile" icon={<SettingOutlined />}>
-                <a href="/user/profile">User Settings</a>
-              </Menu.Item>
-              <Menu.Item key="userPosts" icon={<CopyOutlined />}>
-                <a href="/user/posts">User Posts</a>
+                <a href="/user/settings">User Settings</a>
               </Menu.Item>
               <Menu.Item
                 key="logout"
@@ -52,7 +48,7 @@ export default function HorizontalNavbar() {
               icon={<FormOutlined />}
               className="float-right"
             >
-              <a href="/posts/new">New Post</a>
+              <a href="/post/form">New Post</a>
             </Menu.Item>
           </>
         ) : (
