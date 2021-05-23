@@ -40,4 +40,4 @@ function startServer(port) {
 }
 
 setupServer();
-startServer(5000);
+startServer(process.env.PORT || 5000);
