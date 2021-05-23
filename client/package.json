@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.0.1",
     "@testing-library/jest-dom": "^5.11.9",
