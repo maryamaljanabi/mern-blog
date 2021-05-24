@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import Jumbotron from "../../components/Jumbotron/Jumbotron";
 import "./Home.scss";
 import { Player } from "@lottiefiles/react-lottie-player";
-import { Button, Row, Col, Divider, Card, Spin, Alert} from "antd";
+import { Button, Row, Col, Divider, Card, Spin, Alert } from "antd";
 import { RightCircleOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { postsAPI } from "../../api/api";
 import defaultPostImage from "./../../assets/images/default-post-image.jpg";
 import { useSelector } from "react-redux";
+import PostsGrid from "../../components/PostsGrid/PostsGrid";
 const { Meta } = Card;
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
   const [postsData, setPostsData] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     function handleResize() {
@@ -32,11 +34,11 @@ export default function Home() {
         setPostsData(res);
         setErrorMsg(null);
       } catch (error) {
-        setErrorMsg('Error loading posts data')
+        setErrorMsg("Error loading posts data");
         console.log("Error retrieving all posts...", error);
       }
     })();
-  }, []);
+  }, [reload]);
 
   return (
     <div className="home">
@@ -132,35 +134,17 @@ export default function Home() {
         </>
       )}
       <Divider orientation="center">Most recent posts</Divider>
-      {errorMsg? 
-      <div className="loader-container">
-      <Alert message={errorMsg} type="error" /> 
-      </div>
-      : postsData && Boolean(postsData.length) ? 
-      <Row className="posts-container" type="flex">
-        {postsData.map((item) => (
-          <Col xs={24} sm={12} md={8} lg={8} key={item._id}>
-            <Card
-              hoverable
-              cover={
-                <img
-                  alt={item.title}
-                  src={item.imagePath ? item.imagePath : defaultPostImage}
-                />
-              }
-            >
-              <Meta
-                title={item.title}
-                description={item.content.substring(1, 100) + "..."}
-              />
-            </Card>
-          </Col>
-        ))}
-      </Row> :
-      <div className="loader-container">
-        <Spin size="large" />     
-      </div>
-    }
+      {errorMsg ? (
+        <div className="loader-container">
+          <Alert message={errorMsg} type="error" />
+        </div>
+      ) : postsData && Boolean(postsData.length) ? (
+        <PostsGrid data={postsData} reloadPosts={(param) => setReload(param)} />
+      ) : (
+        <div className="loader-container">
+          <Spin size="large" />
+        </div>
+      )}
     </div>
   );
 }

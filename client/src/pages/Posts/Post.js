@@ -25,7 +25,6 @@ export default function Post() {
         id = location.state.postID;
         try {
           const { data: res } = await postsAPI.getOne(id);
-          console.log(res);
           setPostData(res);
         } catch (error) {
           console.log("Error retrieving one post...", error);
