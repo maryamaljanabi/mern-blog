@@ -23,7 +23,7 @@ code {
   border-radius: 10px !important;
   width: 90%;
   margin: 1rem !important;
-  height: 500px;
+  // height: 500px;
   img {
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
@@ -90,6 +90,14 @@ code {
 
 .m-auto {
   margin: auto;
+}
+
+.loader-container{
+  margin: 20px 0;
+  margin-bottom: 20px;
+  padding: 30px 50px;
+  text-align: center;
+  border-radius: 4px;
 }
 
 .disabled {

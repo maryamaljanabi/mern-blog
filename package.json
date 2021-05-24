@@ -19,7 +19,7 @@
     "express-validator": "^6.10.0",
     "jsonwebtoken": "^8.5.1",
     "lodash.isempty": "^4.4.0",
-    "mongoose": "^5.11.15",
+    "mongoose": "^5.12.10",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
