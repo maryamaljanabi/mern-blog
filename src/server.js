@@ -13,6 +13,8 @@ import { passport as passportMiddleware } from "./middlewares/passport";
 
 const app = express();
 
+const port  = process.env.PORT || 5000;
+
 function setupServer() {
   connectDB();
   middlewares();
@@ -34,10 +36,8 @@ function middlewares() {
   passportMiddleware;
 }
 
-function startServer(port) {
-  app.listen(port);
-  console.log(`server started on port ${port}`);
-}
+app.listen(port,() => {  
+  console.log("Server listening on port " + port);
+});
 
 setupServer();
-startServer(process.env.PORT || 5000);

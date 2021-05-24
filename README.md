@@ -1,6 +1,5 @@
 # MERN-Blog
 
-A work in progress...
 
 ## Table of contents
 
@@ -20,7 +19,7 @@ A virtual blog application using the MERN stack (MongoDB, Express js, React js, 
 
 The main technologies used to build this application are:
 
-- Node.js version 14.8.0
+- Node.js version 14.16.0
 - MongoDB version 4.4.3
 - Express.js version 4.17.1
 - React.js version 17.0.1
