@@ -9,6 +9,8 @@ import defaultPostImage from "./../../assets/images/default-post-image.jpg";
 import defaultUser from "./../../assets/images/default-user.png";
 import moment from "moment";
 import Avatar from "antd/lib/avatar/avatar";
+import CommentForm from "../Comments/CommentForm";
+import Comments from "../Comments/Comments";
 
 export default function Post() {
   const [postData, setPostData] = useState({});
@@ -39,6 +41,8 @@ export default function Post() {
       }
     })();
   }, [location.state]);
+
+  console.log(postData);
 
   return (
     <div className="view-post">
@@ -82,7 +86,7 @@ export default function Post() {
                   router.push("/posts/edit", { postID: postData._id })
                 }
               >
-                Edit Profile
+                Edit
               </Button>
 
               <Button
@@ -95,10 +99,14 @@ export default function Post() {
                   setDeleteModal(true);
                 }}
               >
-                Edit Profile
+                Delete
               </Button>
             </div>
           )}
+          {Boolean(userState.user.id) && (
+            <CommentForm createdBy={userState.user.id} postId={postData._id} />
+          )}
+          <Comments data={postData.comments} />
         </>
       )}
     </div>

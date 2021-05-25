@@ -7,7 +7,13 @@ export const getAllPosts = async () => {
 
 export const getOnePost = async (id) => {
   //find post
-  const post = await Post.findById(id);
+  const post = await Post.findById(id).populate({
+    path: "comments",
+    populate: {
+      path: "createdBy",
+    },
+  });
+
   let res;
   if (post) {
     //get the name of the creator
