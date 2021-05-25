@@ -26,9 +26,6 @@ export const getPostByUserID = async (userId) => {
 };
 
 export const addPost = async (post) => {
-  //find user by name
-  const user = await User.findById(post.createdBy);
-  post.createdBy = user._id;
   //add post
   return await Post.create(post);
 };

@@ -15,6 +15,7 @@ const postSchema = Schema({
   },
   createdAt: { type: Date, default: Date.now, required: true },
   createdBy: { type: mongoose.Schema.ObjectId, ref: "User", required: true },
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
 });
 
 export default mongoose.model("Post", postSchema);

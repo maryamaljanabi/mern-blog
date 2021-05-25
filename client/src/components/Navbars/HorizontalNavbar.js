@@ -52,7 +52,7 @@ export default function HorizontalNavbar() {
               icon={<FormOutlined />}
               className="float-right"
             >
-              <a href="/post/form">New Post</a>
+              <a href="/posts/new">New Post</a>
             </Menu.Item>
           </>
         ) : (
