@@ -55,7 +55,7 @@ export default function Home() {
                     shape="round"
                     icon={<RightCircleOutlined />}
                     size="large"
-                    onClick={() => router.push("/signin")}
+                    onClick={() => router.push("/posts/new")}
                   >
                     Write a post now!
                   </Button>
@@ -70,7 +70,7 @@ export default function Home() {
                       shape="round"
                       icon={<RightCircleOutlined />}
                       size="large"
-                      onClick={() => router.push("/signin")}
+                      onClick={() => router.push("/posts/new")}
                     >
                       Get Started
                     </Button>
@@ -100,7 +100,7 @@ export default function Home() {
                     shape="round"
                     icon={<RightCircleOutlined />}
                     size="large"
-                    onClick={() => router.push("/signin")}
+                    onClick={() => router.push("/login")}
                   >
                     Get Started
                   </Button>
@@ -115,7 +115,7 @@ export default function Home() {
                       shape="round"
                       icon={<RightCircleOutlined />}
                       size="large"
-                      onClick={() => router.push("/signin")}
+                      onClick={() => router.push("/login")}
                     >
                       Get Started
                     </Button>

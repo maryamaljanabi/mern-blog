@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { postsAPI } from "./../../api/api";
 import { useLocation } from "react-router-dom";
 import PostsGrid from "../../components/PostsGrid/PostsGrid";
+import { Form, Input, Button, Tag, message, Image, Spin, Alert } from "antd";
 
 export default function UserPosts() {
   const userState = useSelector((st) => st.user);
@@ -12,6 +13,7 @@ export default function UserPosts() {
   const [userName, setUserName] = useState(null);
   const [userID, setUserID] = useState(null);
   const [reload, setReload] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     function handleResize() {
@@ -26,9 +28,11 @@ export default function UserPosts() {
       const { data: res } = await postsAPI.getPostByUserId(
         userID ?? userState.user.id
       );
-      console.log(res);
       setPostsData(res);
+      setErrorMsg(null);
     } catch (error) {
+      setPostsData([]);
+      setErrorMsg("Error loading user posts");
       console.log("Error retrieving all posts...", error);
     }
   };
@@ -54,14 +58,26 @@ export default function UserPosts() {
 
   return (
     <div className="posts-div">
-      <h2>{userName ? `Posts of user ${userName}` : "Your posts"}</h2>
-      {Boolean(postsData) && Boolean(postsData.length) ? (
-        <PostsGrid
-          data={postsData}
-          reloadPosts={(reloadTrigger) => setReload(reloadTrigger)}
-        />
+      {errorMsg ? (
+        <div className="loader-container">
+          <Alert message={errorMsg} type="error" />
+        </div>
+      ) : Object.keys(postsData).length === 0 ? (
+        <div className="loader-container">
+          <Spin size="large" />
+        </div>
       ) : (
-        <h2>You have no posts yet</h2>
+        <>
+          <h2>{userName ? `Posts of user ${userName}` : "Your posts"}</h2>
+          {Boolean(postsData) && Boolean(postsData.length) ? (
+            <PostsGrid
+              data={postsData}
+              reloadPosts={(reloadTrigger) => setReload(reloadTrigger)}
+            />
+          ) : (
+            <h2>You have no posts yet</h2>
+          )}
+        </>
       )}
     </div>
   );

@@ -3,6 +3,7 @@ import {
   LoginOutlined,
   UserAddOutlined,
   SettingOutlined,
+  GroupOutlined,
   FormOutlined,
 } from "@ant-design/icons";
 import { Menu, Avatar } from "antd";
@@ -28,12 +29,15 @@ export default function HorizontalNavbar() {
           <>
             <SubMenu
               key="SubMenu"
-              icon={<Avatar src={userState.user.imageUrl} shape="circle" />}
+              icon={<Avatar src={userState.user.imagePath} shape="circle" />}
               title={" " + userState.user.userName}
               className="float-right unhoverable-menu-item"
             >
               <Menu.Item key="userProfile" icon={<SettingOutlined />}>
-                <a href="/user/settings">User Settings</a>
+                <a href="/user/profile">User Profile</a>
+              </Menu.Item>
+              <Menu.Item key="userPosts" icon={<GroupOutlined />}>
+                <a href="/user/posts">User Posts</a>
               </Menu.Item>
               <Menu.Item
                 key="logout"
