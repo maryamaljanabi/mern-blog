@@ -1,3 +1,21 @@
+.comment-form {
+  margin: 1rem auto 3rem auto;
+  div.ant-row.ant-form-item {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .float-right {
+    .ant-btn {
+      float: right !important;
+    }
+  }
+
+  .ant-alert-error {
+    margin: 0.5rem auto;
+    border-radius: 10px !important;
+  }
+}
+
 .comment-container {
   background-color: #f5f5f5;
   border-radius: 10px;
@@ -7,6 +25,8 @@
   align-items: end;
   margin: 0.5rem auto !important;
   gap: 1rem;
+  transition: all 200ms ease-in-out;
+
   .cols {
     width: 100%;
     display: flex;

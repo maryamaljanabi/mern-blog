@@ -29,3 +29,10 @@ export const postsAPI = {
   update: (data) => axios.put(`/posts`, data),
   delete: (id) => axios.delete(`/posts/${id}`),
 };
+
+// COMMENTS
+export const commentsAPI = {
+  add: (data) => axios.post(`/comments`, data),
+  update: (data) => axios.put(`/comments`, data),
+  delete: (id) => axios.delete(`/comments/${id}`),
+};

@@ -20,6 +20,7 @@ export default function Post() {
   const [deleteModal, setDeleteModal] = useState(false);
   const [deletePostID, setDeletePostID] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     let id = null;
@@ -40,7 +41,7 @@ export default function Post() {
         router.push("/");
       }
     })();
-  }, [location.state]);
+  }, [location.state, reload]);
 
   console.log(postData);
 
@@ -104,7 +105,11 @@ export default function Post() {
             </div>
           )}
           {Boolean(userState.user.id) && (
-            <CommentForm createdBy={userState.user.id} postId={postData._id} />
+            <CommentForm
+              createdBy={userState.user.id}
+              postId={postData._id}
+              setReloadingFlag={(reload) => setReload(reload)}
+            />
           )}
           <Comments data={postData.comments} />
         </>

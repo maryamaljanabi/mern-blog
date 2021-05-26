@@ -6,6 +6,7 @@ import moment from "moment";
 
 export default function Comments({ data }) {
   console.log(data);
+
   return (
     <div>
       {data && Boolean(data.length)
@@ -14,8 +15,8 @@ export default function Comments({ data }) {
           : `${data.length} Comments`
         : null}
 
-      {data.map((comment) => (
-        <div className="comment-container">
+      {data.map((comment, index) => (
+        <div className="comment-container" key={index}>
           <div>
             <Avatar
               size="large"
@@ -28,7 +29,7 @@ export default function Comments({ data }) {
               <div className="comment-text">{comment.content}</div>
             </div>
             <div className="comment-date">
-              {moment(comment.createdAt).fromNow(true)}
+              {moment(comment.createdAt).fromNow(false)}
             </div>
           </div>
         </div>
