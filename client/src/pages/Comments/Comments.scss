@@ -4,10 +4,10 @@
     margin-bottom: 0.5rem !important;
   }
 
-  .float-right {
-    .ant-btn {
-      float: right !important;
-    }
+  .comments-btns-container {
+    display: flex;
+    gap: 0.5rem;
+    float: right !important;
   }
 
   .ant-alert-error {

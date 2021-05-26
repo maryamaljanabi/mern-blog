@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { Button, message, Image, Spin, Alert } from "antd";
+import { Button, message, Image, Spin, Alert, Modal, Divider } from "antd";
 import { EditFilled, DeleteFilled } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { postsAPI } from "./../../api/api";
@@ -20,7 +20,7 @@ export default function Post() {
   const [deleteModal, setDeleteModal] = useState(false);
   const [deletePostID, setDeletePostID] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [reload, setReload] = useState(false);
+  const [reload, setReload] = useState(null);
 
   useEffect(() => {
     let id = null;
@@ -43,7 +43,21 @@ export default function Post() {
     })();
   }, [location.state, reload]);
 
-  console.log(postData);
+  const confirmDelete = async () => {
+    try {
+      await postsAPI.delete(deletePostID);
+      setDeleteModal(false);
+      message.success("Post deleted successfully");
+      router.goBack();
+    } catch (error) {
+      console.log("Error deleting post...", error.response ?? error);
+      message.error("Error deleting post");
+      if (error.response && error.response.data) {
+        message.error(error.response.data);
+      } else message.error("Error deleting post");
+      setDeleteModal(false);
+    }
+  };
 
   return (
     <div className="view-post">
@@ -105,13 +119,26 @@ export default function Post() {
             </div>
           )}
           {Boolean(userState.user.id) && (
-            <CommentForm
-              createdBy={userState.user.id}
-              postId={postData._id}
-              setReloadingFlag={(reload) => setReload(reload)}
-            />
+            <>
+              <Divider />
+              <CommentForm
+                createdBy={userState.user.id}
+                postId={postData._id}
+                setReloadingFlag={(value) => setReload(value)}
+              />
+            </>
           )}
           <Comments data={postData.comments} />
+
+          <Modal
+            title="Delete Confirmation"
+            visible={deleteModal}
+            onOk={() => confirmDelete()}
+            onCancel={() => setDeleteModal(false)}
+            centered
+          >
+            <p>Are you sure you want to delete post?</p>
+          </Modal>
         </>
       )}
     </div>

@@ -39,10 +39,14 @@ export default function PostsGrid({ data, reloadPosts }) {
         {data.map((item) => (
           <Col xs={24} sm={12} md={8} lg={8} key={item._id}>
             <Card
-              onClick={() => router.push("/posts/view", { postID: item._id })}
               hoverable
               cover={
-                <div className="image-container">
+                <div
+                  className="image-container"
+                  onClick={() =>
+                    router.push("/posts/view", { postID: item._id })
+                  }
+                >
                   <img
                     alt={item.title}
                     src={item.imagePath ? item.imagePath : defaultPostImage}
@@ -74,6 +78,7 @@ export default function PostsGrid({ data, reloadPosts }) {
               <Meta
                 title={item.title}
                 description={item.content.substring(0, 100) + "..."}
+                onClick={() => router.push("/posts/view", { postID: item._id })}
               />
             </Card>
           </Col>

@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Form, Input, Button, Tag, message, Alert } from "antd";
 import { Form as FinalForm, Field } from "react-final-form";
 import isEmpty from "lodash.isempty";
-import { useSelector } from "react-redux";
-import TextArea from "antd/lib/input/TextArea";
-import { commentsAPI, postsAPI } from "./../../api/api";
+import { commentsAPI } from "./../../api/api";
 
 export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
   const router = useHistory();
@@ -14,8 +12,6 @@ export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
   const [reloading, setReloading] = useState(false);
 
   const onSubmit = async (event) => {
-    console.log(event);
-
     if (isEmpty(event) || !event.content) {
       console.log("no content!", submissionErrors);
       setSubmissionErrors("Can't submit an empty comment");
@@ -38,15 +34,18 @@ export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
     }
   };
 
-  console.log(submissionErrors);
-
   return (
     <div className="comment-form">
       <FinalForm
         initialValues={initialValues}
         onSubmit={onSubmit}
-        render={({ handleSubmit, submitting }) => (
-          <form onSubmit={handleSubmit}>
+        render={({ form, handleSubmit, submitting, reset }) => (
+          <form
+            onSubmit={async (event) => {
+              await handleSubmit(event);
+              form.reset();
+            }}
+          >
             <Form.Item labelCol={{ span: 24 }}>
               <Field name="content">
                 {({ input, meta }) => (
@@ -71,7 +70,15 @@ export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
               />
             )}
 
-            <div className="float-right">
+            <div className="comments-btns-container">
+              <Button
+                disabled={submitting}
+                htmlType="button"
+                onClick={form.reset}
+              >
+                Clear
+              </Button>
+
               <Button disabled={submitting} htmlType="submit" type="primary">
                 Comment
               </Button>
