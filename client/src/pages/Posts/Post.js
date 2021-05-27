@@ -20,7 +20,8 @@ export default function Post() {
   const [deleteModal, setDeleteModal] = useState(false);
   const [deletePostID, setDeletePostID] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [reload, setReload] = useState(null);
+  const [reloadDelete, setReloadDelete] = useState(null);
+  const [reloadPost, setReloadPost] = useState(null);
 
   useEffect(() => {
     let id = null;
@@ -41,7 +42,7 @@ export default function Post() {
         router.push("/");
       }
     })();
-  }, [location.state, reload]);
+  }, [location.state, reloadDelete, reloadPost]);
 
   const confirmDelete = async () => {
     try {
@@ -124,11 +125,14 @@ export default function Post() {
               <CommentForm
                 createdBy={userState.user.id}
                 postId={postData._id}
-                setReloadingFlag={(value) => setReload(value)}
+                setReloadingFlag={(value) => setReloadPost(value)}
               />
             </>
           )}
-          <Comments data={postData.comments} />
+          <Comments
+            data={postData.comments}
+            setReloadingFlag={(value) => setReloadDelete(value)}
+          />
 
           <Modal
             title="Delete Confirmation"

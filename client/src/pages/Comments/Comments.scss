@@ -37,4 +37,18 @@
   .comment-date {
     color: gray;
   }
+  .icons-cols {
+    width: 100%;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-evenly;
+    margin: 0;
+    height: 25px;
+    align-items: center;
+    .anticon {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
