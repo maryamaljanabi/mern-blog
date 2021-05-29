@@ -20,4 +20,14 @@
     white-space: pre-line;
     margin: 2rem auto;
   }
+
+  @media only screen and (max-width: 1050px) {
+    width: 80%;
+  }
+  @media only screen and (max-width: 1000px) {
+    width: 90%;
+  }
+  @media only screen and (max-width: 820px) {
+    width: 100%;
+  }
 }

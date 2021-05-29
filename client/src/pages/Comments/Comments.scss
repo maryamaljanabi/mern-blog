@@ -50,10 +50,16 @@
     margin: 0;
   }
   .comment-text {
-    flex: 8.5;
+    flex: 7;
+  }
+  .comment-text-mobile {
+    text-align: justify;
   }
   .comment-date {
     flex: 1;
+    color: gray;
+  }
+  .comment-date-mobile {
     color: gray;
   }
   .icons-cols {
@@ -61,6 +67,21 @@
     display: flex;
     flex-direction: row !important;
     justify-content: space-evenly;
+    margin: 0;
+    height: 25px;
+    align-items: center;
+    .anticon {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .icons-cols-mobile {
+    width: 100%;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: end;
+    gap: 1rem;
     margin: 0;
     height: 25px;
     align-items: center;
