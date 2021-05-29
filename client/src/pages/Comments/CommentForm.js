@@ -13,7 +13,6 @@ export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
 
   const onSubmit = async (event) => {
     if (isEmpty(event) || !event.content) {
-      console.log("no content!", submissionErrors);
       setSubmissionErrors("Can't submit an empty comment");
     } else {
       setSubmissionErrors(null);
@@ -55,7 +54,6 @@ export default function CommentForm({ createdBy, postId, setReloadingFlag }) {
                       name="content"
                       placeholder="Add a comment"
                     />
-                    {/* {meta.touched && setSubmissionErrors(null)} */}
                   </div>
                 )}
               </Field>

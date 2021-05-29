@@ -21,6 +21,7 @@ export default function Post() {
   const [deletePostID, setDeletePostID] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [reloadDelete, setReloadDelete] = useState(null);
+  const [reloadEdit, setReloadEdit] = useState(null);
   const [reloadPost, setReloadPost] = useState(null);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function Post() {
         router.push("/");
       }
     })();
-  }, [location.state, reloadDelete, reloadPost]);
+  }, [location.state, reloadDelete, reloadPost, reloadEdit]);
 
   const confirmDelete = async () => {
     try {
@@ -131,7 +132,8 @@ export default function Post() {
           )}
           <Comments
             data={postData.comments}
-            setReloadingFlag={(value) => setReloadDelete(value)}
+            setDeleteReloadingFlag={(value) => setReloadDelete(value)}
+            setEditReloadingFlag={(value) => setReloadEdit(value)}
           />
 
           <Modal
