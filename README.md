@@ -32,6 +32,7 @@ Unlogged in users can do the following:
 
 - View all posts.
 - View one post's content by clicking on it.
+- View post's comments.
 - View any user's profile.
 - Signup.
 
@@ -39,9 +40,10 @@ In addition to the above points, logged in users can do the following:
 
 - Login or logout.
 - Create a new post.
-- Edit/delete their own posts.
-- Edit their own user profile or password.
-- View their own posts.
+- View/Edit/delete their posts.
+- Edit their user profile or password.
+- Add a new comment on a post.
+- View/Edit/Delete their comments.
 
 ## Database
 
@@ -60,6 +62,13 @@ All the models can be found in the models directory created using mongoose.
 - title (String)
 - content (String)
 - imagePath (String)
+- createdAt (Date)
+- createdBy (ObjectID - a reference to the user's table)
+- comments (ObjectID - an array of comments on the post)
+
+### Comment Schema:
+
+- content (String)
 - createdAt (Date)
 - createdBy (ObjectID - a reference to the user's table)
 
