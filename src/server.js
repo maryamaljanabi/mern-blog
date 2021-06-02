@@ -30,18 +30,18 @@ function setupServer() {
     process.env.NODE_ENV === "production" ||
     process.env.NODE_ENV === "staging"
   ) {
+    // If Express doesn't recognize route serve index.html
+    const path = require("path");
+    // Express will serve up production assets i.e. main.js
+    app.use(express.static(path.join(__dirname, "./../client/build")));
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "./../client/build", "index.html"));
+    });
+
     // Add production middleware such as redirecting to https
     app.use(
       createProxyMiddleware(["/api"], { target: "http://localhost:5000" })
     );
-
-    // Express will serve up production assets i.e. main.js
-    app.use(express.static(path.join(__dirname, "./../client/build")));
-    // If Express doesn't recognize route serve index.html
-    const path = require("path");
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "./../client/build", "index.html"));
-    });
   }
 
   // app.use(express.static(path.join(__dirname, "./../client/build")));
