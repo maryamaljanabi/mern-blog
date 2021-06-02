@@ -25,33 +25,12 @@ function setupServer() {
   app.use("/api/comments", commentRoutes);
   app.use("/api/auth", authRoutes);
 
-  //Non api requests in production
-  if (
-    process.env.NODE_ENV === "production" ||
-    process.env.NODE_ENV === "staging"
-  ) {
-    // Add production middleware such as redirecting to https
-    app.use(
-      "/api",
-      createProxyMiddleware({
-        target: "https://mern-blog-01.herokuapp.com/",
-        changeOrigin: true,
-      })
-    );
+  const path = require("path");
 
-    // If Express doesn't recognize route serve index.html
-    const path = require("path");
-    // Express will serve up production assets i.e. main.js
-    app.use(express.static(path.join(__dirname, "./../client/build")));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "./../client/build", "index.html"));
-    });
-  }
-
-  // app.use(express.static(path.join(__dirname, "./../client/build")));
-  // app.get("*", (req, res) => {
-  //   res.sendFile(path.join(__dirname, "./../client/build", "index.html"));
-  // });
+  app.use(express.static(path.join(__dirname, "./../client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./../client/build", "index.html"));
+  });
 }
 
 function middlewares() {
