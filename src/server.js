@@ -30,6 +30,15 @@ function setupServer() {
     process.env.NODE_ENV === "production" ||
     process.env.NODE_ENV === "staging"
   ) {
+    // Add production middleware such as redirecting to https
+    app.use(
+      "/api",
+      createProxyMiddleware({
+        target: "https://mern-blog-01.herokuapp.com/",
+        changeOrigin: true,
+      })
+    );
+
     // If Express doesn't recognize route serve index.html
     const path = require("path");
     // Express will serve up production assets i.e. main.js
@@ -37,11 +46,6 @@ function setupServer() {
     app.get("*", (req, res) => {
       res.sendFile(path.join(__dirname, "./../client/build", "index.html"));
     });
-
-    // Add production middleware such as redirecting to https
-    app.use(
-      createProxyMiddleware(["/api"], { target: "http://localhost:5000" })
-    );
   }
 
   // app.use(express.static(path.join(__dirname, "./../client/build")));

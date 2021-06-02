@@ -1,6 +1,6 @@
 import Axios from "axios";
 const axiosConfig = {
-  baseURL: `http://localhost:5000/api`,
+  baseURL: `https://mern-blog-01.herokuapp.com/api`,
 };
 
 const axios = Axios.create(axiosConfig);
