@@ -11,6 +11,7 @@ import bodyParser from "body-parser";
 import connectDB from "./db/dbConfig";
 import passport from "passport";
 import { passport as passportMiddleware } from "./middlewares/passport";
+import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
 
@@ -23,10 +24,30 @@ function setupServer() {
   app.use("/api/users", userRoutes);
   app.use("/api/comments", commentRoutes);
   app.use("/api/auth", authRoutes);
-  app.use(express.static(path.join(__dirname, "./../client/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./../client/build", "index.html"));
-  });
+
+  //Non api requests in production
+  if (
+    process.env.NODE_ENV === "production" ||
+    process.env.NODE_ENV === "staging"
+  ) {
+    // Add production middleware such as redirecting to https
+    app.use(
+      createProxyMiddleware(["/api"], { target: "http://localhost:5000" })
+    );
+
+    // Express will serve up production assets i.e. main.js
+    app.use(express.static(path.join(__dirname, "./../client/build")));
+    // If Express doesn't recognize route serve index.html
+    const path = require("path");
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "./../client/build", "index.html"));
+    });
+  }
+
+  // app.use(express.static(path.join(__dirname, "./../client/build")));
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.join(__dirname, "./../client/build", "index.html"));
+  // });
 }
 
 function middlewares() {

@@ -5,7 +5,12 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm build",
+    "client": "cd client && npm start"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +22,7 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
+    "http-proxy-middleware": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
     "lodash.isempty": "^4.4.0",
     "mongoose": "^5.12.10",
