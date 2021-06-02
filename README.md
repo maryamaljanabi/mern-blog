@@ -14,12 +14,22 @@
 
 A virtual blog application using the MERN stack (MongoDB, Express js, React js, and Node js).
 
+## Demo
+
+![Image description](screenshot-1.png)
+
+![Image description](screenshot-2.png)
+
+This application is deployed on Heroku and can be accessed through the following link:
+
+[MERN Blog on Heroku](https://mern-blog-01.herokuapp.com/)
+
 ## Technology
 
 The main technologies used to build this application are:
 
 - Node.js version 14.16.0
-- MongoDB version 4.4.3`
+- MongoDB version 4.4.3
 - Express.js version 4.17.1
 - React.js version 17.0.1
 - Antd, a React UI Framework, version 4.12.3
@@ -74,7 +84,7 @@ All the models can be found in the models directory created using mongoose.
 
 ## Run
 
-To run this application, you have to set your own environmental variables in the server root folder. For security reasons, some variables have been hidden from view and used as environmental variables with the help of dotenv package. Below are the variables that you need to set in order to run the application:
+To run this application (the master branch), you have to set your own environmental variables in the server root folder. For security reasons, some variables have been hidden from view and used as environmental variables with the help of dotenv package. Below are the variables that you need to set in order to run the application:
 
 - MONGO_URI: this is the connection string of your MongoDB Atlas database.
 
