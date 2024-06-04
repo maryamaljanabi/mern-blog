@@ -1,6 +1,6 @@
 import Axios from "axios";
 const axiosConfig = {
-  baseURL: `http://${window.location.hostname}:5000/api`,
+  baseURL: `${process.env.REACT_APP_API_URL || `http://:${window.location.hostname}:${process.env.REACT_APP_API_PORT || 5000}`}/api`,
 };
 
 const axios = Axios.create(axiosConfig);
